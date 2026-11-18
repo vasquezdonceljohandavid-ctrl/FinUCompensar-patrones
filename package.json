@@ -1,0 +1,13 @@
+{
+  "name": "finucompensar-patrones",
+  "version": "1.0.0",
+  "description": "FinUCompensar: motor de simulación financiera refactorizado con patrones de diseño creacionales, estructurales y comportamentales",
+  "main": "src/index.js",
+  "private": true,
+  "license": "UNLICENSED",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node --test \"test/*.test.js\"",
+    "demo": "node src/cli.js"
+  }
+}

@@ -1,0 +1,22 @@
+classDiagram
+class ServicioAnalisis {
+  <<interface>>
+  +analizar(escenario) ResultadoAnalisis
+}
+class AdaptadorMotorV1 {
+  <<Adapter>>
+  -adaptado: motor_v1
+  +analizar(escenario) ResultadoAnalisis
+}
+class motor_v1 {
+  <<Adaptee - código legado>>
+  +analizarEscenario(entradaPlana) Object
+}
+class CalculadoraMargen {
+  +analizar(escenario) ResultadoAnalisis
+}
+class SimuladorFinanciero { <<Cliente>> }
+SimuladorFinanciero --> ServicioAnalisis
+ServicioAnalisis <|.. AdaptadorMotorV1
+ServicioAnalisis <|.. CalculadoraMargen
+AdaptadorMotorV1 --> motor_v1 : traduce y delega

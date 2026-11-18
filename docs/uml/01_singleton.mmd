@@ -1,0 +1,17 @@
+classDiagram
+class ConfiguracionReglas {
+  <<Singleton>>
+  -instancia$ ConfiguracionReglas
+  +versionReglas: String
+  +umbralMargenEstrecho: Number
+  +aviso: String
+  +mensajes: Map
+  -ConfiguracionReglas(token)
+  +obtenerInstancia()$ ConfiguracionReglas
+  +mensaje(codigo) String
+}
+class CalculadoraMargen
+class InformeTextoBase
+ConfiguracionReglas --> ConfiguracionReglas : instancia única
+CalculadoraMargen ..> ConfiguracionReglas : obtenerInstancia()
+InformeTextoBase ..> ConfiguracionReglas : obtenerInstancia()

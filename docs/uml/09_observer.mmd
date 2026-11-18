@@ -1,0 +1,29 @@
+classDiagram
+class PublicadorAnalisis {
+  <<Sujeto>>
+  -observadores: Set
+  +suscribir(observador)
+  +desuscribir(observador)
+  +notificar(resultado)
+}
+class ObservadorAnalisis {
+  <<interface>>
+  +actualizar(resultado)
+}
+class BitacoraAnalisis {
+  +registros: Object[]
+  +actualizar(resultado)
+}
+class ContadorAlertas {
+  +conteo: Map
+  +actualizar(resultado)
+}
+class AvisoDeficitConsola {
+  +actualizar(resultado)
+}
+class SimuladorFinanciero
+SimuladorFinanciero --> PublicadorAnalisis : notificar()
+PublicadorAnalisis o--> "0..*" ObservadorAnalisis
+ObservadorAnalisis <|.. BitacoraAnalisis
+ObservadorAnalisis <|.. ContadorAlertas
+ObservadorAnalisis <|.. AvisoDeficitConsola

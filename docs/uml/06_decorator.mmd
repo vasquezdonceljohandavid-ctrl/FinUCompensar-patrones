@@ -1,0 +1,29 @@
+classDiagram
+class Formateador {
+  <<interface>>
+  +formatear(resultado) String
+}
+class InformeTextoBase {
+  <<Componente concreto>>
+  +formatear(resultado) String
+}
+class DecoradorInforme {
+  <<abstract>>
+  #componente: Formateador
+  +formatear(resultado) String
+}
+class ConEncabezado {
+  +formatear(resultado) String
+}
+class ConNotaDatosSinteticos {
+  +formatear(resultado) String
+}
+class ConAvisoEducativo {
+  +formatear(resultado) String
+}
+Formateador <|.. InformeTextoBase
+Formateador <|.. DecoradorInforme
+DecoradorInforme o--> Formateador : envuelve
+DecoradorInforme <|-- ConEncabezado
+DecoradorInforme <|-- ConNotaDatosSinteticos
+DecoradorInforme <|-- ConAvisoEducativo

@@ -1,0 +1,18 @@
+classDiagram
+class Cliente["cli.js / interfaz web"]
+class SimuladorFinanciero {
+  <<Facade>>
+  -servicio: ServicioAnalisis
+  -publicador: PublicadorAnalisis
+  +suscribir(observador) SimuladorFinanciero
+  +simular(datos, opciones) Object
+}
+class EscenarioBuilder
+class ServicioAnalisis { <<interface>> }
+class PublicadorAnalisis
+class ExportadorInforme
+Cliente --> SimuladorFinanciero : una sola llamada
+SimuladorFinanciero ..> EscenarioBuilder : 1. construye
+SimuladorFinanciero --> ServicioAnalisis : 2. analiza
+SimuladorFinanciero --> PublicadorAnalisis : 3. notifica
+SimuladorFinanciero ..> ExportadorInforme : 4. exporta

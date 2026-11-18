@@ -1,0 +1,25 @@
+classDiagram
+class CalculadoraMargen {
+  <<Contexto>>
+  -estrategiaCuota: EstrategiaCuota
+  +establecerEstrategiaCuota(estrategia)
+  +analizar(escenario) ResultadoAnalisis
+}
+class EstrategiaCuota {
+  <<interface>>
+  +nombre() String
+  +calcular(obligacion) Integer
+}
+class CuotaIngresada {
+  +calcular(obligacion) Integer
+}
+class CuotaSinInteres {
+  +calcular(obligacion) Integer
+}
+class CuotaFrancesa {
+  +calcular(obligacion) Integer
+}
+CalculadoraMargen o--> EstrategiaCuota
+EstrategiaCuota <|.. CuotaIngresada
+EstrategiaCuota <|.. CuotaSinInteres
+EstrategiaCuota <|.. CuotaFrancesa

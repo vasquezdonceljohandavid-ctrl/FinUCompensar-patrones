@@ -1,0 +1,21 @@
+classDiagram
+class CalculadoraMargen { <<Cliente>> }
+class ReglaAlerta {
+  <<abstract>>
+  -siguiente: ReglaAlerta
+  +enlazar(regla) ReglaAlerta
+  +evaluar(contexto, alertas) String[]
+  +aplicar(contexto, alertas)* Boolean
+}
+class ReglaSinIngresos
+class ReglaDeficitActual
+class ReglaDeficitSimulado
+class ReglaMargenEstrecho
+class ReglaMargenPositivo
+CalculadoraMargen --> ReglaAlerta : primer eslabón
+ReglaAlerta --> ReglaAlerta : siguiente
+ReglaAlerta <|-- ReglaSinIngresos
+ReglaAlerta <|-- ReglaDeficitActual
+ReglaAlerta <|-- ReglaDeficitSimulado
+ReglaAlerta <|-- ReglaMargenEstrecho
+ReglaAlerta <|-- ReglaMargenPositivo

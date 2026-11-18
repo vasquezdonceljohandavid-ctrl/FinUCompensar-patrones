@@ -1,0 +1,31 @@
+classDiagram
+direction LR
+class Cliente["cli.js / interfaz web"]
+class SimuladorFinanciero {
+  <<Facade>>
+  +simular(datos, opciones) Object
+}
+class EscenarioBuilder { <<Builder>> }
+class ServicioAnalisis {
+  <<interface>>
+  +analizar(escenario) ResultadoAnalisis
+}
+class CalculadoraMargen
+class AdaptadorMotorV1 { <<Adapter>> }
+class EstrategiaCuota { <<Strategy>> }
+class ReglaAlerta { <<Chain of Responsibility>> }
+class PublicadorAnalisis { <<Observer>> }
+class ExportadorInforme { <<Factory Method>> }
+class DecoradorInforme { <<Decorator>> }
+class ConfiguracionReglas { <<Singleton>> }
+Cliente --> SimuladorFinanciero
+SimuladorFinanciero --> EscenarioBuilder
+SimuladorFinanciero --> ServicioAnalisis
+SimuladorFinanciero --> PublicadorAnalisis
+SimuladorFinanciero --> ExportadorInforme
+ServicioAnalisis <|.. CalculadoraMargen
+ServicioAnalisis <|.. AdaptadorMotorV1
+CalculadoraMargen --> EstrategiaCuota
+CalculadoraMargen --> ReglaAlerta
+CalculadoraMargen ..> ConfiguracionReglas
+ExportadorInforme ..> DecoradorInforme

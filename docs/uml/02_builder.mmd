@@ -1,0 +1,39 @@
+classDiagram
+class EscenarioBuilder {
+  <<Builder>>
+  -id: String
+  -descripcion: String
+  -movimientos: Movimiento[]
+  -obligacion: ObligacionNueva
+  +reiniciar() EscenarioBuilder
+  +conId(id) EscenarioBuilder
+  +conIngreso(valor) EscenarioBuilder
+  +conGasto(valor) EscenarioBuilder
+  +conAhorro(valor) EscenarioBuilder
+  +conObligacionActual(valor) EscenarioBuilder
+  +conObligacionNueva(datos) EscenarioBuilder
+  +build() Escenario
+  +desdeObjeto(json)$ Escenario
+}
+class Escenario {
+  <<Producto>>
+  +id: String
+  +movimientos: Movimiento[]
+  +obligacionNueva: ObligacionNueva
+  +totales() Object
+}
+class Movimiento {
+  +tipo: String
+  +valor: Integer
+}
+class ObligacionNueva {
+  +valor: Integer
+  +plazoMeses: Integer
+  +cuota: Integer
+  +tasaMensual: Number
+}
+class SimuladorFinanciero { <<Director>> }
+SimuladorFinanciero ..> EscenarioBuilder : usa
+EscenarioBuilder ..> Escenario : crea
+Escenario "1" *-- "0..*" Movimiento
+Escenario "1" *-- "1" ObligacionNueva

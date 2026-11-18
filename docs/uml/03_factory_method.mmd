@@ -1,0 +1,29 @@
+classDiagram
+class ExportadorInforme {
+  <<abstract>>
+  +crearFormateador()* Formateador
+  +exportar(resultado) String
+}
+class ExportadorTexto {
+  +crearFormateador() Formateador
+}
+class ExportadorJson {
+  +crearFormateador() Formateador
+}
+class Formateador {
+  <<interface>>
+  +formatear(resultado) String
+}
+class FormateadorJson {
+  +formatear(resultado) String
+}
+class InformeTextoDecorado["ConAvisoEducativo (cadena de decoradores)"] {
+  +formatear(resultado) String
+}
+ExportadorInforme <|-- ExportadorTexto
+ExportadorInforme <|-- ExportadorJson
+Formateador <|.. FormateadorJson
+Formateador <|.. InformeTextoDecorado
+ExportadorTexto ..> InformeTextoDecorado : crea
+ExportadorJson ..> FormateadorJson : crea
+ExportadorInforme ..> Formateador : usa
